@@ -30,14 +30,14 @@ contract Beluga{
         balances[owner] = totalSupply;
     }
 
-    function balanceOf(address owner) public view returns(uint256){
-        return balances[owner];
+    function balanceOf(address owner_) public view returns(uint256){
+        return balances[owner_];
     }
 
-    function transfer(address to, uint256 amount) public returns(bool){
-        require(balances[msg.sender]>=amount,"Insufficient balance");
-        balances[msg.sender]-=amount;
-        balances[to]+=amount;
+    function transfer(address to_, uint256 amount_) public returns(bool){
+        require(balances[msg.sender]>=amount_,"Insufficient balance");
+        balances[msg.sender]-=amount_;
+        balances[to_]+=amount_;
         return true;
     }
 
@@ -55,11 +55,11 @@ contract Beluga{
         return true;
     }
 
-    function allowance(address owner, address spender) public view returns(uint256){
-        return allowances[owner][spender];
+    function allowance(address owner_, address spender_) public view returns(uint256){
+        return allowances[owner_][spender_];
     }
 
-    function mint(address to, uint256 amount) public onlyOwner returns(bool){
+    function mint(address to, uint256 amount) public returns(bool){
         balances[to]+=amount;
         totalSupply+=amount;
         return true;
